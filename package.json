@@ -1,0 +1,21 @@
+{
+  "name": "@alumis/observables-i18n",
+  "version": "1.0.5",
+  "description": "Localization using observables @alumis/observables",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alumis/observables-i18n.git"
+  },
+  "author": "Emil Müller",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/alumis/observables-i18n/issues"
+  },
+  "devDependencies": {
+    "@alumis/observables": "^1.0.41",
+    "typescript": "^3.3.4000"
+  },
+  "peerDependencies": {
+    "@alumis/observables": "^1.0.41"
+  }
+}
