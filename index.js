@@ -18,7 +18,7 @@ class ObservableI18nPlugin {
         this.languageCodes = options.languageCodes || [];
 
         if (this.languageCodes.indexOf(this.defaultLanguageCode) === -1)
-            this.languageCodes.push(this.defaultLanguageCode);
+            this.languageCodes.unshift(this.defaultLanguageCode);
     
     }
 
@@ -140,7 +140,7 @@ class ObservableI18nPlugin {
 
         let result = { defaultLanguageCode: this.defaultLanguageCode, languages: [] };
 
-        for (let lc of [this.defaultLanguageCode].concat(this.languageCodes.filter(lc => lc !== this.defaultLanguageCode))) {
+        for (let lc of this.languageCodes) {
 
             let assembledLanguage = this.assembled[lc];
 
