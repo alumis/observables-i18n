@@ -9,7 +9,7 @@ export class Language {
 }
 
 export var defaultLanguage: Language;
-export var availableLanguages = (<any>languageData).languages.map(l => {
+export var availableLanguages = (<any[]>(<any>languageData).languages).map(l => {
 
     let result = new Language(l.languageCode, l.englishName, l.nativeName, l.keyEntries);
 

@@ -12,10 +12,10 @@
     "url": "https://github.com/alumis/observables-i18n/issues"
   },
   "devDependencies": {
-    "@alumis/observables": "^1.0.41",
+    "@alumis/observables": "^1.0.47",
     "typescript": "^3.3.4000"
   },
   "peerDependencies": {
-    "@alumis/observables": "^1.0.41"
+    "@alumis/observables": "^1.0.47"
   }
 }
