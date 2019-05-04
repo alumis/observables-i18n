@@ -1,6 +1,6 @@
 {
   "name": "@alumis/observables-i18n",
-  "version": "1.0.7",
+  "version": "1.0.12",
   "description": "Localization using observables @alumis/observables",
   "repository": {
     "type": "git",

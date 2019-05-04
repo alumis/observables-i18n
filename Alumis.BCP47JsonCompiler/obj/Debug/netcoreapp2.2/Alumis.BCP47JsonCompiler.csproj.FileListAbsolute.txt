@@ -1,0 +1,12 @@
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/bin/Debug/netcoreapp2.2/language-subtag-registry.txt
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/bin/Debug/netcoreapp2.2/Alumis.BCP47JsonCompiler.deps.json
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/bin/Debug/netcoreapp2.2/Alumis.BCP47JsonCompiler.runtimeconfig.json
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/bin/Debug/netcoreapp2.2/Alumis.BCP47JsonCompiler.runtimeconfig.dev.json
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/bin/Debug/netcoreapp2.2/Alumis.BCP47JsonCompiler.dll
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/bin/Debug/netcoreapp2.2/Alumis.BCP47JsonCompiler.pdb
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/obj/Debug/netcoreapp2.2/Alumis.BCP47JsonCompiler.csprojAssemblyReference.cache
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/obj/Debug/netcoreapp2.2/Alumis.BCP47JsonCompiler.csproj.CoreCompileInputs.cache
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/obj/Debug/netcoreapp2.2/Alumis.BCP47JsonCompiler.AssemblyInfoInputs.cache
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/obj/Debug/netcoreapp2.2/Alumis.BCP47JsonCompiler.AssemblyInfo.cs
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/obj/Debug/netcoreapp2.2/Alumis.BCP47JsonCompiler.dll
+/home/emil/git/observables-i18n/Alumis.BCP47JsonCompiler/obj/Debug/netcoreapp2.2/Alumis.BCP47JsonCompiler.pdb
