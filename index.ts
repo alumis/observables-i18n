@@ -3,7 +3,7 @@ import * as languageData from "./__observables-i18n.json";
 
 export class Language {
 
-    constructor(public subtag: string, public nativeName: string, public englishName: string, public scope: string, public macroLanguageSubtag: string, public keyEntries: { [key: string]: string }) {
+    constructor(public subtag: string, public nativeName: string, public englishName: string, public macroLanguageSubtag: string, public keyEntries: { [key: string]: string }) {
 
     }
 
@@ -21,7 +21,7 @@ export var languagesBySubtag = new Map<string, Language>();
 
 for (let l of (<any[]>(<any>languageData).languages)) {
 
-    let language = new Language(l.subtag, l.nativeName, l.englishName,  l.scope, l.macroLanguageSubtag, l.keyEntries);
+    let language = new Language(l.subtag, l.nativeName, l.englishName, l.macroLanguageSubtag, l.keyEntries);
 
     if (language.subtag === (<any>languageData).defaultSubtag)
         defaultLanguage = language;
@@ -119,4 +119,91 @@ export function r(key: string) {
     observablesByKey.set(key, observable = Observable.create(value));
 
     return observable;
+}
+
+export function toLocaleString(obj: { toLocaleString(locales?: string | string[]): string }) {
+
+    let l = currentLanguage.value;
+
+    if (l) {
+
+        switch (l.subtag) { // Bug in Firefox and Chrome: https://bugs.chromium.org/p/chromium/issues/detail?id=959246
+
+            case "no": // nb is the only one that is implemented correctly
+            case "nn":
+
+                if (defaultLanguage)
+                    return obj.toLocaleString(["nb", defaultLanguage.subtag]);
+
+                return obj.toLocaleString("nb");
+        }
+
+        if (defaultLanguage)
+            return obj.toLocaleString([l.subtag, defaultLanguage.subtag]);
+
+        return obj.toLocaleString(l.subtag);
+    }
+
+    else if (defaultLanguage)
+        return obj.toLocaleString(defaultLanguage.subtag);
+
+    else return obj.toString();
+}
+
+export function toLocaleDateString(date: Date) {
+
+    let l = currentLanguage.value;
+
+    if (l) {
+
+        switch (l.subtag) { // Bug in Firefox and Chrome: https://bugs.chromium.org/p/chromium/issues/detail?id=959246
+
+            case "no": // nb is the only one that is implemented correctly
+            case "nn":
+
+                if (defaultLanguage)
+                    return date.toLocaleDateString(["nb", defaultLanguage.subtag]);
+
+                return date.toLocaleDateString("nb");
+        }
+
+        if (defaultLanguage)
+            return date.toLocaleDateString([l.subtag, defaultLanguage.subtag]);
+
+        return date.toLocaleDateString(l.subtag);
+    }
+
+    else if (defaultLanguage)
+        return date.toLocaleDateString(defaultLanguage.subtag);
+
+    else return date.toLocaleDateString();
+}
+
+export function toLocaleTimeString(date: Date) {
+
+    let l = currentLanguage.value;
+
+    if (l) {
+
+        switch (l.subtag) { // Bug in Firefox and Chrome: https://bugs.chromium.org/p/chromium/issues/detail?id=959246
+
+            case "no": // nb is the only one that is implemented correctly
+            case "nn":
+
+                if (defaultLanguage)
+                    return date.toLocaleTimeString(["nb", defaultLanguage.subtag]);
+
+                return date.toLocaleTimeString("nb");
+        }
+
+        if (defaultLanguage)
+            return date.toLocaleTimeString([l.subtag, defaultLanguage.subtag]);
+
+        return date.toLocaleTimeString(l.subtag);
+    }
+
+    else if (defaultLanguage)
+        return date.toLocaleTimeString(defaultLanguage.subtag);
+
+    else return date.toLocaleTimeString();
 }

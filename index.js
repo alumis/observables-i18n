@@ -132,9 +132,6 @@ class ObservableI18nPlugin {
                     if (bcp47Language.nativeName)
                         assembledLanguage.nativeName = bcp47Language.nativeName;
     
-                    if (bcp47Language.scope)
-                        assembledLanguage.scope = bcp47Language.scope;
-    
                     if (bcp47Language.macroLanguageSubtag)
                         assembledLanguage.macroLanguageSubtag = bcp47Language.macroLanguageSubtag;
                 }
@@ -160,9 +157,6 @@ class ObservableI18nPlugin {
 
                 if (bcp47Language.nativeName)
                     assembledLanguage.nativeName = bcp47Language.nativeName;
-
-                if (bcp47Language.scope)
-                    assembledLanguage.scope = bcp47Language.scope;
 
                 if (bcp47Language.macroLanguageSubtag)
                     assembledLanguage.macroLanguageSubtag = bcp47Language.macroLanguageSubtag;
