@@ -1,6 +1,6 @@
 {
   "name": "@alumis/observables-i18n",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Localization using observables @alumis/observables",
   "repository": {
     "type": "git",
@@ -20,8 +20,6 @@
   },
   "peerDependencies": {
     "@alumis/observables": "^1.0.47",
-    "@alumis/semaphore": "1.0.1",
-    "@alumis/cancellationtoken": "1.0.4",
     "fast-xml-parser": "3.12.16"
   }
 }

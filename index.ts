@@ -38,7 +38,13 @@ for (let l of languages) {
         l.macroLanguage = macroLanguage;
 }
 
-export var currentLanguage = Observable.create(defaultLanguage);
+var localStorageLanguageSubtag = localStorage.getItem("__lang");
+var localStorageLanguage: Language;
+
+if (localStorageLanguageSubtag)
+    localStorageLanguage = languagesBySubtag.get(localStorageLanguageSubtag);
+
+export var currentLanguage = Observable.create(localStorageLanguage || defaultLanguage);
 
 let observablesByKey = new Map<string, Observable<string>>();
 
@@ -70,6 +76,7 @@ currentLanguage.subscribe(n => {
         }
 
         document.documentElement.setAttribute("lang", n.subtag);
+        localStorage.setItem("__lang", n.subtag);
     }
 
     else {
@@ -78,6 +85,7 @@ currentLanguage.subscribe(n => {
             p[1].value = <any>n;
 
         document.documentElement.removeAttribute("lang");
+        localStorage.removeItem("__lang");
     }
 });
 
