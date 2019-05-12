@@ -2,9 +2,11 @@
 
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 const VirtualStats = require('./virtual-stats');
 const bcp47 = require("./bcp47.json");
+const parser = require('fast-xml-parser');
 
 class ObservableI18nPlugin {
 
@@ -22,6 +24,7 @@ class ObservableI18nPlugin {
     }
 
     apply(compiler) {
+
         const moduleName = "./node_modules/@alumis/observables-i18n/__observables-i18n.json";
         const ctime = ObservableI18nPlugin.statsDate();
         const self = this;
@@ -77,32 +80,76 @@ class ObservableI18nPlugin {
         }
     }
 
-    processPath(fs, path) {
+    processPath(fileSystem, filePath) {
 
-        if (this.processedPaths.has(path))
+        if (this.processedPaths.has(filePath))
             return false;
 
-        this.processedPaths.add(path);
+        this.processedPaths.add(filePath);
 
         let pathEntries = new Map();
 
-        for (let l of fs.readFileSync(path).toString("utf-8").split('\n')) {
+        for (let l of fileSystem.readFileSync(filePath).toString("utf-8").split('\n')) {
 
-            let i = l.indexOf("////");
+            try {
+                let i = l.indexOf("///");
 
-            if (i !== -1) {
+                if (i !== -1) {
+    
+                    let xml = l.substr(i + 3).trim();
+                    let o = this.parseXml(xml);
+    
+                    if (!o.hasOwnProperty('i18n'))
+                        continue;
+    
+                    let data = o['i18n'];
+                    let attrs = data['attrs'];
+    
+                    let key = attrs['key'];
+                    let lang = attrs['lang'];
+    
+                    if (!key) 
+                        throw Error('i18n tag is missing required attribute "key"');
+    
+                    if (!lang)
+                        throw Error('i18n tag is missing required attribute "lang"');
+    
+                    let value = data['value'];
+                    let translationRelativeFilePath = attrs['file'];
+    
+                    if (value && translationRelativeFilePath) 
+                        throw Error('i18n tag cannot have a text value and a file attribute');
+                    
+                    let translation = value;
+    
+                    if (!translation) {
+    
+                        if (!translationRelativeFilePath) 
+                            throw Error('i18 tag must have either a text value or the file attribute');
+    
+                        let translationAbsoluteFilePath = path.resolve(path.dirname(filePath), translationRelativeFilePath);
 
-                let args = JSON.parse("[" + l.substr(i + 4) + "]"), key = args[0], values = args[1];
-                let keyEntries = pathEntries.get(key);
-
-                if (!keyEntries) {
-
-                    keyEntries = new Map();
-                    pathEntries.set(key, keyEntries);
+                        if (!fs.existsSync(translationAbsoluteFilePath))
+                            throw Error(`Resource file not found: ${translationAbsoluteFilePath}`);
+    
+                        translation = fs.readFileSync(translationAbsoluteFilePath).toString("utf-8");                      
+                    }
+    
+                    let keyEntries = pathEntries.get(key);
+    
+                    if (!keyEntries) {
+    
+                        keyEntries = new Map();
+                        pathEntries.set(key, keyEntries);
+                    }
+    
+                    keyEntries.set(lang, translation);
                 }
-
-                for (var p in values)
-                    keyEntries.set(p, values[p]);
+            }
+            catch(error) {
+                
+                console.error(error);
+                throw error;
             }
         }
 
@@ -113,6 +160,26 @@ class ObservableI18nPlugin {
         }
 
         else return false;
+    }
+
+    parseXml(xml) {
+
+        var options = {
+            attributeNamePrefix : "",
+            attrNodeName: "attrs",
+            textNodeName : "value",
+            ignoreAttributes : false,
+            parseNodeValue : true,
+            parseAttributeValue : false,
+            trimValues: true,
+            parseTrueNumberOnly: false
+        };
+
+        if (!parser.validate(xml)) {
+            throw Error(`invalid xml: ${xml}`);
+        }
+
+        return parser.parse(xml, options);
     }
 
     mergePathEntriesWithAssembly(pathEntries) {
