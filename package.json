@@ -2,6 +2,9 @@
   "name": "@alumis/observables-i18n",
   "version": "2.0.0",
   "description": "Localization using observables @alumis/observables",
+  "scripts": {
+    "bump": "git add -A & git commit -am 'bumped' && npm version patch && npm publish && git push --follow-tags"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alumis/observables-i18n.git"
@@ -16,6 +19,7 @@
     "fast-xml-parser": "3.12.16"
   },
   "peerDependencies": {
+    "@alumis/observables": "^2.0.10",
     "fast-xml-parser": "3.12.16"
   }
 }
