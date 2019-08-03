@@ -38,8 +38,8 @@ for (let l of languages) {
         l.macroLanguage = macroLanguage;
 }
 
-var localStorageLanguageSubtag = localStorage.getItem("__lang");
-var localStorageLanguage: Language;
+let localStorageLanguageSubtag = localStorage.getItem("__lang");
+let localStorageLanguage: Language;
 
 if (localStorageLanguageSubtag)
     localStorageLanguage = languagesBySubtag.get(localStorageLanguageSubtag);
