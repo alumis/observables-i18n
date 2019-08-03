@@ -14,12 +14,13 @@
   "bugs": {
     "url": "https://github.com/alumis/observables-i18n/issues"
   },
-  "devDependencies": {
-    "@alumis/observables": "^2.0.10",
+  "dependencies": {
     "fast-xml-parser": "3.12.16"
   },
+  "devDependencies": {
+    "@alumis/observables": "^2.0.10"
+  },
   "peerDependencies": {
-    "@alumis/observables": "^2.0.10",
-    "fast-xml-parser": "3.12.16"
+    "@alumis/observables": "^2.0.10"
   }
 }
