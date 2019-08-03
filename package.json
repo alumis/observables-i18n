@@ -12,13 +12,10 @@
     "url": "https://github.com/alumis/observables-i18n/issues"
   },
   "devDependencies": {
-    "@alumis/observables": "^1.0.52",
-    "@alumis/utils": "^1.0.15",
-    "fast-xml-parser": "3.12.16",
-    "typescript": "^3.5.2"
+    "@alumis/observables": "^2.0.10",
+    "fast-xml-parser": "3.12.16"
   },
   "peerDependencies": {
-    "@alumis/observables": "^1.0.52",
     "fast-xml-parser": "3.12.16"
   }
 }

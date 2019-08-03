@@ -1,4 +1,4 @@
-import { Observable } from "@alumis/observables";
+import { o,ModifiableObservable } from "@alumis/observables";
 import * as languageData from "./__observables-i18n.json";
 
 export class Language {
@@ -44,9 +44,9 @@ var localStorageLanguage: Language;
 if (localStorageLanguageSubtag)
     localStorageLanguage = languagesBySubtag.get(localStorageLanguageSubtag);
 
-export var currentLanguage = Observable.create(localStorageLanguage || defaultLanguage);
+export var currentLanguage = o(localStorageLanguage || defaultLanguage);
 
-let observablesByKey = new Map<string, Observable<string>>();
+let observablesByKey = new Map<string, ModifiableObservable<string>>();
 
 currentLanguage.subscribe(n => {
 
@@ -124,7 +124,7 @@ export function r(key: string) {
         }
     }
 
-    observablesByKey.set(key, observable = Observable.create(value));
+    observablesByKey.set(key, observable = o(value));
 
     return observable;
 }
